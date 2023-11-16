@@ -14,17 +14,12 @@ logger = logging.getLogger(__name__)
 
 logger.setLevel(logging.INFO)
 
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+
 # 파일 핸들러를 추가 (ThreadHandler 사용)
 file_handler = logging.FileHandler('app.log')  # 파일명은 적절히 변경
 
-
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 file_handler.setFormatter(formatter)
-
-# DEBUG가 False일 때만 로그를 수집하는 필터 추가
-class DebugFalseFilter(logging.Filter):
-    def filter(self, record):
-        return not getattr(record, 'debug_false', False)
 file_handler.setLevel(logging.INFO)
 
 logger.addHandler(file_handler)

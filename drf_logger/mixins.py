@@ -9,3 +9,4 @@ class RequestLogViewMixin(object):
         view = super(RequestLogViewMixin, cls).as_view(*args, **kwargs)
         view = decorator_from_middleware(RequestLogMiddleware)(view)
         return view
+
